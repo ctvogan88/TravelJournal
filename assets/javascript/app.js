@@ -37,7 +37,7 @@ if(title !=="" && content !==""){
         lon: lon,
         lat: lat,
         temp: temp,
-        w_coidtion: w_condition
+        w_condition: w_condition
     }
 
     //save it to firebase
@@ -58,3 +58,34 @@ if(title !=="" && content !==""){
 
 }
 });
+
+
+database.ref().on("child_added", function(snap){
+    entryKey = snap.key;
+    
+    //initialize  vars
+    var title = snap.val().title;
+    var content = snap.val().content;
+    var lon = snap.val().lon;
+    var lat = snap.val().lat;
+    var temp = snap.val().temp;
+    var w_condition = snap.val().w_coidtion;
+
+    var containerDiv = $("<div>");
+    containerDiv.attr( "class", "articleDiv");
+
+    var entryButton = $("<button>");
+    entryButton.attr("class", "articleBTN")
+    entryButton.attr("data-title", title);
+    entryButton.attr("data-content", content);
+    entryButton.attr("data-lon", lon);
+    entryButton.attr("data-lat", lat);
+    entryButton.attr("data-temp", temp);
+    entryButton.attr("data-w-condition", w_condition);
+    entryButton.text(title);
+    containerDiv.append(entryButton);
+    
+    $("#whatever").append(containerDiv);
+
+    
+})
