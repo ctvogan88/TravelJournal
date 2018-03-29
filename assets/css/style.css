@@ -41,11 +41,21 @@ html,body,.container {
 }
 
 #map {
-    height: 400px;
+    height: 100%;
     width: 100%;
    }
 
 #listOfJournals {
     position: absolute;
     top: 15px;
+}
+
+.articleBTN {
+    width:100%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.scroll-full {
+    max-height: 98%;
 }
