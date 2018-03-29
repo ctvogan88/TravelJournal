@@ -11,9 +11,14 @@
 
 var database = firebase.database();
 
+//add button:
+$("#btnAdd").click(function(){
+    $(".createJournalWindow").show();
+})
+
 //cancel button
 $("#cancel-button").click(function(){
-    alert("you clicked cancel.");
+    $(".createJournalWindow").hide();
 });
 
 //id='submit-button' on click
@@ -52,8 +57,8 @@ if(title !=="" && content !==""){
     $("#input-w-condition").val("");
     //focus on the first line
     $("#input-title").focus();
-    alert("saved")
-
+    // alert("saved")
+    $(".createJournalWindow").show();
 
 
 }
@@ -85,7 +90,7 @@ database.ref().on("child_added", function(snap){
     entryButton.text(title);
     containerDiv.append(entryButton);
     
-    $("#whatever").append(containerDiv);
+    $("#listOfJournals").append(containerDiv);
 
     
 })
