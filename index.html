@@ -16,10 +16,6 @@
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
-
-
 </head>
 
 <body>
@@ -39,42 +35,41 @@
                             </div>
 
                             <div class="form-group">
-                              <label for="input-lon">Longitutde</label>
-                              <input type="text" class="form-control" id="input-lon" placeholder="Longitude">
-                          </div>
+                                <label for="input-lon">Longitutde</label>
+                                <input type="text" class="form-control" id="input-lon" placeholder="Longitude">
+                            </div>
 
-                          <div class="form-group">
-                            <label for="input-lat">Latitude</label>
-                            <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
-                        </div>
+                            <div class="form-group">
+                                <label for="input-lat">Latitude</label>
+                                <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
+                            </div>
 
 
 
                             <div class="form-group">
-                                            <label for="input-temp">Temprature</label>
-                                            <input type="text" class="form-control" id="input-temp" placeholder="Temprature">
-                                        </div>
-<!-- this goes after the temprature -->
-<div class="form-group">
-  <label for="input-w-conditio">Weather Condition</label>
-  <input type="text" class="form-control" id="input-w-condition" placeholder="Weather Condition">
-</div> 
-                                        <div class="form-group">
-                                            <label for="input-content">Contents</label>
-                                            <textarea class="form-control" id="input-content" rows="10"></textarea>
-                                        </div>
+                                <label for="input-temp">Temprature</label>
+                                <input type="text" class="form-control" id="input-temp" placeholder="Temprature">
+                            </div>
+                            <!-- this goes after the temprature -->
+                            <div class="form-group">
+                                <label for="input-w-conditio">Weather Condition</label>
+                                <input type="text" class="form-control" id="input-w-condition" placeholder="Weather Condition">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-content">Contents</label>
+                                <textarea class="form-control" id="input-content" rows="10"></textarea>
+                            </div>
 
-   
+
 
                             <button type="button" class="btn btn-primary" id='submit-button'>Submit</button>
                             <button type="button" class="btn btn-danger" id='cancel-button'>Cancel</button>
                         </form>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="col-md-3 no-float" style="background-color: grey;">
-                <div id="listOfJournals">
-                    <h1>List of Journals</h1>
+                <div id="listOfJournals" class="pre-scrollable scroll-full " style="padding:25px;">
                 </div>
             </div>
         </div>
