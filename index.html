@@ -16,18 +16,14 @@
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
-
-
 </head>
 
 <body>
     <div class="container" style="background-color: black; margin: 0 auto; width: 100%; height: 100%;">
         <div class="row no-float">
             <div class="col-lg-9 no-float" style="background-color: lightblue;">
-                <div id="map"></div>
-                <button class="btn createJournalButton" style="border-radius: 15px;" href="#">
+                <div id="map" style="height: 100%;"></div>
+                <button id="btnAdd" class="btn createJournalButton" style="border-radius: 15px;" href="#">
                     <h1>ADD JOURNAL</h1>
                 </button>
                 <div class="createJournalWindow" style="border-radius: 20px;" href="#">
@@ -39,24 +35,32 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="input-lon">Longitute</label>
-                                <input type="text" class="form-control" id="input-lon" placeholder="Longitute">
-                            </div>
+                              <label for="input-lon">Longitutde</label>
+                              <input type="text" class="form-control" id="input-lon" placeholder="Longitude">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="input-lat">Latitude</label>
+                            <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
+                        </div>
+
+
 
                             <div class="form-group">
-                                <label for="input-lat">Latitude</label>
-                                <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
-                            </div>
+                                            <label for="input-temp">Temprature</label>
+                                            <input type="text" class="form-control" id="input-temp" placeholder="Temprature">
+                                        </div>
+<!-- this goes after the temprature -->
+<div class="form-group">
+  <label for="input-w-conditio">Weather Condition</label>
+  <input type="text" class="form-control" id="input-w-condition" placeholder="Weather Condition">
+</div> 
+                                        <div class="form-group">
+                                            <label for="input-content">Contents</label>
+                                            <textarea class="form-control" id="input-content" rows="10"></textarea>
+                                        </div>
 
-                            <div class="form-group">
-                                <label for="input-temp">Temprature</label>
-                                <input type="text" class="form-control" id="input-temp" placeholder="Temprature">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-content">Contents</label>
-                                <textarea class="form-control" id="input-content" rows="10"></textarea>
-                            </div>
+   
 
                             <button type="button" class="btn btn-primary" id='submit-button'>Submit</button>
                             <button type="button" class="btn btn-danger" id='cancel-button'>Cancel</button>
