@@ -34,3 +34,7 @@ html,body,.container {
     background-color:white;
     color: black;  
 }
+
+.add-journal{
+    padding: 20px;
+}
