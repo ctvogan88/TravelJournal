@@ -89,20 +89,13 @@
             //     ['Manly Beach', -33.80010128657071, 151.28747820854187, 0],
             //     ['Maroubra Beach', -33.950198, 151.259302, 0]
             // ];
-            var markers = [];//some array
-            var i = 0;
-                
-            
-
+            var locaitons = [];
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4
             });
             map.setCenter(new google.maps.LatLng(41.850033, -87.6500523));
-            var bounds = new google.maps.LatLngBounds();
-
             database.ref().on("child_added", function (snap) {
                 entryKey = snap.key;
-
                 //initialize  vars
                 var title = snap.val().title;
                 var content = snap.val().content;
@@ -110,47 +103,30 @@
                 var lat = snap.val().lat;
                 var temp = snap.val().temp;
                 var w_condition = snap.val().w_coidtion;
-                markers.push([lon, lat]);
-                console.log(markers);
-                i++;
-           
-                bounds.extend(markers[i].getPosition());
-                map.fitBounds(bounds);
-
                 var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
                 var icons = {
                     journalEntry: {
                         icon: iconBase + '/icon54.png'
                     }
                 };
-
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(lon, lat),
                     map: map,
                     icon: icons.journalEntry.icon
                 });
-
                 google.maps.event.addListener(marker, 'click', (function (marker) {
                     return function () {
-
-
                         // infowindow.setContent(title);
                         // infowindow.open(map, marker);
                         console.log(title);
                     }
                 })(marker, title));
             });
-
-
-
-
-
             // for (i = 0; i < locations.length; i++) {
             //     marker = new google.maps.Marker({
             //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             //         map: map
             //     });
-
             //     google.maps.event.addListener(marker, 'click', (function (marker, i) {
             //         return function () {
             //             infowindow.setContent(locations[i][0]);
@@ -159,8 +135,6 @@
             //     })(marker, i));
             // }
         }
-
-
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV5nuOTlmfsvRYZpn--64G27L12SRtYkI&callback=initMap">
     </script>
