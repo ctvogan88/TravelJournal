@@ -74,7 +74,8 @@ database.ref().on("child_added", function(snap){
     var lon = snap.val().lon;
     var lat = snap.val().lat;
     var temp = snap.val().temp;
-    var w_condition = snap.val().w_coidtion;
+    var w_condition = snap.val().w_condition;
+    //changes happened here above
 
     var containerDiv = $("<div>");
     containerDiv.attr( "class", "articleDiv");
