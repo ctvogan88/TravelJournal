@@ -98,5 +98,5 @@ database.ref().on("child_added", function(snap){
     containerDiv.append(entryButton);
 
 
-    $("#listOfJournals").append(containerDiv);
+    $("#listOfJournals").prepend(containerDiv);
 })
