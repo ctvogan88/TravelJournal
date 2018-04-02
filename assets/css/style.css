@@ -20,6 +20,7 @@ html,body,.container {
 
 .createJournalButton {
     position:absolute;
+    padding-top: -25px;
     bottom:15px;
     left:15px;
     background-color:black;
