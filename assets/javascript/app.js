@@ -74,7 +74,8 @@ database.ref().on("child_added", function(snap){
     var lon = snap.val().lon;
     var lat = snap.val().lat;
     var temp = snap.val().temp;
-    var w_condition = snap.val().w_coidtion;
+    var w_condition = snap.val().w_condition;
+    //changes happened here above
 
     var containerDiv = $("<div>");
     containerDiv.attr( "class", "articleDiv");
@@ -98,10 +99,7 @@ database.ref().on("child_added", function(snap){
     containerDiv.append(entryButton);
 
 
-    $("#listOfJournals").append(containerDiv);
-});
-
-// populates the Entry Display when Article Button is clicked
+ // populates the Entry Display when Article Button is clicked
 $(document).on("click", ".articleBTN", function(event){
     event.preventDefault();
     console.log("clicked", $(this));
@@ -133,3 +131,5 @@ $(document).on("click", ".articleBTN", function(event){
     /* $("submit-button").hide();
     $("cancel-button").hide(); */
 });
+    $("#listOfJournals").prepend(containerDiv);
+})
