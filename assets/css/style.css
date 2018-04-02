@@ -53,19 +53,19 @@ html, body, .container {
 
 }
 
-.articleBTN {
+.journalEntry {
     width:100%;
     margin-bottom: 10px;
     border-radius: 15px;
 }
 
-.articleBTN h4 {
+.journalEntry h4 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 24px;
     text-align: center;
 }
 
-.articleBTN p {
+.journalEntry p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
     text-align: left;

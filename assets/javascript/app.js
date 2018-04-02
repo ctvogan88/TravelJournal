@@ -80,7 +80,7 @@ database.ref().on("child_added", function(snap){
     containerDiv.attr( "class", "articleDiv");
 
     var entryButton = $("<button>");
-    entryButton.attr("class", "articleBTN")
+    entryButton.attr("class", "journalEntry")
     entryButton.attr("data-title", title);
     entryButton.attr("data-content", content);
     entryButton.attr("data-lon", lon);
