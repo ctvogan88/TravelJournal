@@ -99,5 +99,37 @@ database.ref().on("child_added", function(snap){
     containerDiv.append(entryButton);
 
 
+ // populates the Entry Display when Article Button is clicked
+$(document).on("click", ".articleBTN", function(event){
+    event.preventDefault();
+    console.log("clicked", $(this));
+
+    // put entry data into variables
+    var entryTitle = $(this).attr("data-title");
+    var entryContent = $(this).attr("data-content");
+    var entryLon = $(this).attr("data-lon");
+    var entryLat = $(this).attr("data-lat");
+    var entryTemp = $(this).attr("data-temp");
+    var entryWeather = $(this).attr("data-w-condition");
+
+    console.log(entryTitle + entryContent + entryLon + entryTemp + entryWeather);
+
+    // displays the form/results window
+    $(".createJournalWindow").show();
+
+    $("label[for='input-title']").text("Title: " +  entryTitle); 
+    $("label[for='applyDistanceSlab']").text("10 kms");
+    $("#input-title").attr("placeholder", entryTitle);
+    $("#input-content").attr("placeholder", entryContent);
+    $("#input-lon").attr("placeholder", entryLon);
+    $("#input-lat").attr("placeholder", entryLat);
+    $("#input-temp").attr("placeholder", entryTemp);
+    $("#input-w-condition").attr("placeholder", entryWeather);
+
+    $("input[for='input-title']").hide();
+    
+    /* $("submit-button").hide();
+    $("cancel-button").hide(); */
+});
     $("#listOfJournals").prepend(containerDiv);
 })
