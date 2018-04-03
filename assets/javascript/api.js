@@ -32,20 +32,3 @@ var glApi = "AIzaSyAV5nuOTlmfsvRYZpn--64G27L12SRtYkI";
     //   }).then(function(response) {
     //     console.log(response);
     //   });
-
-          //proxy url for the class
-          var apiURL = 'https://proxy-cbc.herokuapp.com/proxy';
-          //the url for google places
-          var queryURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.8530221,-117.18319989999999&radius=15000&type=restaurant,&key='+glApi;
-          $.ajax({
-              url: apiURL,
-              method: 'POST',
-              data: {
-                  'url': queryURL
-              }
-          }).done(function(response) {
-              var res = JSON.stringify(response);
-              $("#stuff").text(res);
-
-              console.log(response)
-          });
