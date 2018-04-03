@@ -45,7 +45,7 @@
 
 
                         <!-- .display-div inside create journal widnow #form-div for form -->
-                        <div class="display-div" id="form-div">
+                        <div class="display-div" id="display-form-div">
                             <!-- form starts here -->
                             <form class="add-journal">
 
@@ -117,20 +117,26 @@
                         <!-- .display-div changed id from entry-div to display-journal for showing contents of the journal -->
                         <div class="display-div" id="display-journal">
                             <!-- guessing this is here for div debug?  ck - let me know -->
-                            <h4>Title:
+                            <h4>
                                 <div id="view-titleX"></div>
                             </h4>
-                            <p>Weather Condition:
+                            <p class="display-weather">Weather Condition:
                                 <div id="view-weather-tempX">, </div>
                                 <div id="view-weather-conditionX"></div>
                             </p>
-                            <p>Location:
-                                <div id="view-regionX"></div>,
-                                <div id="view-cityX"></div>
+                            <p class="display-location">Location:
+                                <div><span id="view-stateX"></span>, 
+                                <span id="view-cityX"></span>, 
+                                <span id="view-countryX"></span.></div>
+                                <div id="view-latX"></div>
+                                <div id="view-lonX"></div>
                             </p>
-                            <p>Contents:
+                            
+                            <p class="display-content">Contents:
                                 <div id="view-contentX"></div>
                             </p>
+                            <!-- cancel button -->
+                            <button type="button" class="btn btn-danger" id='cancel-button-journal'>Close</button>
                         </div>
                             <!-- end of view journal -->
 
@@ -147,7 +153,9 @@
             </div>
         </div>
     </div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANNhzqVYqoSeLoMatGOb5YbIANBOR8ERo&callback=initMap"></script>
+   
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV5nuOTlmfsvRYZpn--64G27L12SRtYkI&callback=initMap">
+    </script>
     <script src="assets/javascript/map.js"></script>
     <script src="assets/javascript/app.js"></script>
     <script src="assets/javascript/geoWeather.js"></script>

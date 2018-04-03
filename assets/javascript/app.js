@@ -19,6 +19,11 @@ $("#btnAdd").click(function () {
     // get updated API INFO FROM GEO LOCATION FUNCTION:
     getGeoData();
 
+    //show display-form div
+    //hide display-journal div
+    $("#display-journal").hide();
+    $("#display-form-div").show();
+    
 
     if (mapViewStatus) {
         $(".createJournalWindow").show();
@@ -31,8 +36,24 @@ $("#btnAdd").click(function () {
     }
 });
 
-//cancel button
+
+
+//cancel button for form
 $("#cancel-button").click(function(){
+    if (mapViewStatus) {
+        $(".createJournalWindow").show();
+        $("#btnAdd").html("<h1>VIEW MAP</h1>");
+        mapViewStatus = false;
+    } else {
+        $(".createJournalWindow").hide();
+        $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
+        mapViewStatus = true;
+    }
+});
+
+
+//cancel button for display
+$("#cancel-button-journal").click(function(){
     if (mapViewStatus) {
         $(".createJournalWindow").show();
         $("#btnAdd").html("<h1>VIEW MAP</h1>");
@@ -93,9 +114,8 @@ if(title !=="" && content !==""){
     $("#input-title").focus();
     // alert("saved")
     $(".createJournalWindow").show();
+}
 
-
-    }
 });
 
 
@@ -115,9 +135,11 @@ database.ref().on("child_added", function (snap) {
     var w_condition = snap.val().w_condition;
     //changes happened here above
 
+    //creating container div
     var containerDiv = $("<div>");
     containerDiv.attr("class", "articleDiv");
 
+    // creating buttons
     var entryButton = $("<button>");
     entryButton.attr("class", "journalEntry")
     entryButton.attr("data-title", title);
@@ -129,15 +151,13 @@ database.ref().on("child_added", function (snap) {
     entryButton.attr("data-lat", lat);
     entryButton.attr("data-temp", temp);
     entryButton.attr("data-w-condition", w_condition);
+
     entryButton.html("<h4>Title: "+title+"</h4>");
-    entryButton.append("<h3><b>Content: </b>"+content+"</h3>");
-    entryButton.append("<p>longitude: "+lon+"</p");
-    entryButton.append("<p>littitude: "+lat+"</p");
-    entryButton.append("<p>City: "+city+"</p");
-    entryButton.append("<p>State: "+state+"</p");
-    entryButton.append("<p>Country: "+country+"</p");
-    entryButton.append("<p>Temperature: "+temp+"</p");
-    entryButton.append("<p>Weather: "+w_condition+"</p");
+    // entryButton.append("<h3><b>Content: </b>"+content+"</h3>");
+    entryButton.append("<p>Ln: "+lon+", Lt: "+lat+"</p");
+    entryButton.append("<p>City: "+city+", State: "+state+", Country: "+country+"</p");
+    entryButton.append("<p>Temp: "+temp+", Weather: "+w_condition+"</p");
+   
     
     containerDiv.append(entryButton);
 
@@ -145,36 +165,66 @@ database.ref().on("child_added", function (snap) {
  // populates the Entry Display when Article Button is clicked
 $(document).on("click", ".journalEntry", function(event){
     event.preventDefault();
-    console.log("clicked", $(this));
+    
+    //hide display-form div
+    //show display-journal div
+    $("#display-journal").show();
+    $("#display-form-div").hide();
+    
+  
+
 
     // put entry data into variables
     var entryTitle = $(this).attr("data-title");
     var entryContent = $(this).attr("data-content");
     var entryCity = $(this).attr("data-city");
+    var entryCountry = $(this).attr("data-country");
+    var entryState = $(this).attr("data-state");
+
     var entryLon = $(this).attr("data-lon");
     var entryLat = $(this).attr("data-lat");
     var entryTemp = $(this).attr("data-temp");
     var entryWeather = $(this).attr("data-w-condition");
 
-    console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
+    //console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
 
     // displays the form/results window
     $(".createJournalWindow").show();
+    if (mapViewStatus) {
+        $("#btnAdd").html("<h1>VIEW MAP</h1>");
+        mapViewStatus = false;
+    } 
 
-    $("label[for='input-title']").text("Title: " +  entryTitle); 
-    $("label[for='applyDistanceSlab']").text("10 kms");
-    $("#input-title").attr("placeholder", entryTitle);
-    $("#input-content").attr("placeholder", entryContent);
-    $("#input-city").attr("placerholder", entryCity);
-    $("#input-lon").attr("placeholder", entryLon);
-    $("#input-lat").attr("placeholder", entryLat);
-    $("#input-temp").attr("placeholder", entryTemp);
-    $("#input-w-condition").attr("placeholder", entryWeather);
 
-    $("input[for='input-title']").hide();
+    // $("label[for='input-title']").text("Title: " +  entryTitle); 
+    // $("label[for='applyDistanceSlab']").text("10 kms");
+    // $("#input-title").attr("placeholder", entryTitle);
+    // $("#input-content").attr("placeholder", entryContent);
+    // $("#input-city").attr("placerholder", entryCity);
+    // $("#input-lon").attr("placeholder", entryLon);
+    // $("#input-lat").attr("placeholder", entryLat);
+    // $("#input-temp").attr("placeholder", entryTemp);
+    // $("#input-w-condition").attr("placeholder", entryWeather);
+    // $("input[for='input-title']").hide();
     
+    displayJournalOn(entryTitle, entryContent, entryCity, entryState, entryCountry, entryLon, entryLon, entryTemp, entryWeather);
+
+
     /* $("submit-button").hide();
     $("cancel-button").hide(); */
 });
     $("#listOfJournals").prepend(containerDiv);
 })
+
+function displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition){
+    $("#view-titleX").html(title);
+    $("#view-cityX").html(city);
+    $("#view-stateX").html(state);
+    $("#view-countryX").html(country);
+    $("#view-latX").html(lat);
+    $("#view-lonX").html(lon);
+    $("#view-weather-tempX").html(temp + " F");
+    $("#view-weather-conditionX").html(w_condition);
+    $("#view-contentX").html(content);
+    
+}
