@@ -29,15 +29,7 @@ $("#btnAdd").click(function () {
         $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
-<<<<<<< HEAD
-
-})
-
-//cancel button
-$("#cancel-button").click(function () {
-    $(".createJournalWindow").hide();
-=======
-})
+});
 
 //cancel button
 $("#cancel-button").click(function(){
@@ -50,7 +42,6 @@ $("#cancel-button").click(function(){
         $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
 });
 
 //id='submit-button' on click
@@ -69,37 +60,6 @@ $("#submit-button").click(function () {
     var temp = $("#input-temp").val().trim();
     var w_condition = $("#input-w-condition").val().trim();
 
-<<<<<<< HEAD
-    //data validation:
-    if (title !== "" && content !== "") {
-
-        //make an object
-        var dataObject = {
-            title: title,
-            content: content,
-            city: city,
-            lon: lon,
-            lat: lat,
-            temp: temp,
-            w_condition: w_condition
-        }
-
-        //save it to firebase
-        database.ref().push(dataObject);
-
-        //clean the form
-        $("#input-title").val("");
-        $("#input-content").val("");
-        $("#input-city").val("");
-        $("#input-lon").val("");
-        $("#input-lat").val("");
-        $("#input-temp").val("");
-        $("#input-w-condition").val("");
-        //focus on the first line
-        $("#input-title").focus();
-        // alert("saved")
-        $(".createJournalWindow").show();
-=======
 //data validation:
 if(title !=="" && content !==""){
 
@@ -134,7 +94,6 @@ if(title !=="" && content !==""){
     // alert("saved")
     $(".createJournalWindow").show();
 
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
 
     }
 });
@@ -146,14 +105,10 @@ database.ref().on("child_added", function (snap) {
     //initialize  vars
     var title = snap.val().title;
     var content = snap.val().content;
-<<<<<<< HEAD
-    var city = snap.val().city;
-=======
     var city =snap.val().city;
     var country =snap.val().country;
     var state =snap.val().state;
 
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
     var lon = snap.val().lon;
     var lat = snap.val().lat;
     var temp = snap.val().temp;
@@ -174,54 +129,6 @@ database.ref().on("child_added", function (snap) {
     entryButton.attr("data-lat", lat);
     entryButton.attr("data-temp", temp);
     entryButton.attr("data-w-condition", w_condition);
-<<<<<<< HEAD
-    entryButton.html("<h4>Title: " + title + "</h4>");
-    //entryButton.append("<h4><b>Content: </b>"+content+"</h4>");
-    //entryButton.append("<p>longitude: "+lon+"</p");
-    //entryButton.append("<p>littitude: "+lat+"</p");
-    entryButton.append("<p>City: " + city + "</p");
-    entryButton.append("<p>Temperature: " + temp + "</p");
-    entryButton.append("<p>Weather: " + w_condition + "</p");
-
-
-    containerDiv.append(entryButton);
-
-
-    //populates the Entry Display when Article Button is clicked
-    $(document).on("click", ".journalEntry", function (event) {
-        event.preventDefault();
-        console.log("clicked", $(this));
-
-        // put entry data into variables
-        var entryTitle = $(this).attr("data-title");
-        var entryContent = $(this).attr("data-content");
-        var entryCity = $(this).attr("data-city");
-        var entryLon = $(this).attr("data-lon");
-        var entryLat = $(this).attr("data-lat");
-        var entryTemp = $(this).attr("data-temp");
-        var entryWeather = $(this).attr("data-w-condition");
-
-        console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
-
-        // displays the form/results window
-        $(".createJournalWindow").show();
-
-        $("label[for='input-title']").text("Title: " + entryTitle);
-        $("label[for='applyDistanceSlab']").text("10 kms");
-        $("#input-title").attr("placeholder", entryTitle);
-        $("#input-content").attr("placeholder", entryContent);
-        $("#input-city").attr("placerholder", entryCity);
-        $("#input-lon").attr("placeholder", entryLon);
-        $("#input-lat").attr("placeholder", entryLat);
-        $("#input-temp").attr("placeholder", entryTemp);
-        $("#input-w-condition").attr("placeholder", entryWeather);
-
-        $("input[for='input-title']").hide();
-
-        /* $("submit-button").hide();
-        $("cancel-button").hide(); */
-    });
-=======
     entryButton.html("<h4>Title: "+title+"</h4>");
     entryButton.append("<h4><b>Content: </b>"+content+"</h4>");
     entryButton.append("<p>longitude: "+lon+"</p");
@@ -269,6 +176,5 @@ $(document).on("click", ".journalEntry", function(event){
     /* $("submit-button").hide();
     $("cancel-button").hide(); */
 });
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
     $("#listOfJournals").prepend(containerDiv);
 })

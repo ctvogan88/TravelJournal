@@ -55,86 +55,48 @@
                                     <input type="text" class="form-control" id="input-title" placeholder="Title">
                                 </div>
 
-<<<<<<< HEAD
-                                <!-- country Inputbox -->
-                                <!-- <div class="form-group"> -->
-                                <!-- <label for="input-country">Country</label> -->
-                                <input type="hidden" class="form-control" id="input-country" placeholder="country">
-                                <!-- </div> -->
-=======
                                  <!-- country Inputbox -->
                                  <!-- <div class="form-group"> -->
                                         <!-- <label for="input-country">Country</label> -->
                                         <input type="hidden" class="form-control" id="input-country" placeholder="country">
                                     <!-- </div> -->
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
 
 
                                 <!-- State Inputbox -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-state">State</label> -->
-                                <input type="hidden" class="form-control" id="input-state" placeholder="State">
-=======
                                     <!-- <label for="input-state">State</label> -->
                                     <input type="hidden" class="form-control" id="input-state" placeholder="State">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
                                 <!-- city inputbox -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-city">City</label> -->
-                                <input type="hidden" class="form-control" id="input-city" placeholder="City">
-=======
                                     <!-- <label for="input-city">City</label> -->
                                     <input type="hidden" class="form-control" id="input-city" placeholder="City">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
                                 <!-- lat inputbox -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-lon">Longitutde</label> -->
-                                <input type="hidden" class="form-control" id="input-lon" placeholder="Longitude">
-=======
                                     <!-- <label for="input-lon">Longitutde</label> -->
                                     <input type="hidden" class="form-control" id="input-lon" placeholder="Longitude">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
                                 <!-- lat input -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-lat">Latitude</label> -->
-                                <input type="hidden" class="form-control" id="input-lat" placeholder="Latitude">
-=======
                                     <!-- <label for="input-lat">Latitude</label> -->
                                     <input type="hidden" class="form-control" id="input-lat" placeholder="Latitude">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
 
                                 <!-- temp input -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-temp">Temprature</label> -->
-                                <input type="hidden" class="form-control" id="input-temp" placeholder="Temprature">
-=======
                                     <!-- <label for="input-temp">Temprature</label> -->
                                     <input type="hidden" class="form-control" id="input-temp" placeholder="Temprature">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
                                 <!-- weather condition input -->
                                 <!-- <div class="form-group"> -->
-<<<<<<< HEAD
-                                <!-- <label for="input-w-conditio">Weather Condition</label> -->
-                                <input type="hidden" class="form-control" id="input-w-condition" placeholder="Weather Condition">
-=======
                                     <!-- <label for="input-w-conditio">Weather Condition</label> -->
                                     <input type="hidden" class="form-control" id="input-w-condition" placeholder="Weather Condition">
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                                 <!-- </div> -->
 
                                 <!-- contents text area -->
@@ -170,12 +132,8 @@
                                 <div id="view-contentX"></div>
                             </p>
                         </div>
-<<<<<<< HEAD
-                        <!-- end of view journal -->
-=======
                             <!-- end of view journal -->
 
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
                     </div>
                 </div>
                 <!-- end of create journal window -->
@@ -189,87 +147,8 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-    <script src="assets/javascript/map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANNhzqVYqoSeLoMatGOb5YbIANBOR8ERo&callback=initMap"></script>
-=======
-    <script>
-        function initMap() {
-            // var locations = [
-            //     ['Bondi Beach', -33.890542, 151.274856, 0], //the name of the locaiton will be the title of the journal 
-            //     ['Coogee Beach', -33.923036, 151.259052, 0], // the
-            //     ['Cronulla Beach', -34.028249, 151.157507, 0],
-            //     ['Manly Beach', -33.80010128657071, 151.28747820854187, 0],
-            //     ['Maroubra Beach', -33.950198, 151.259302, 0]
-            // ];
-
-            var locaitons = [];
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4
-            });
-            map.setCenter(new google.maps.LatLng(41.850033, -87.6500523));
-
-
-            database.ref().on("child_added", function (snap) {
-                entryKey = snap.key;
-
-                //initialize  vars
-                var title = snap.val().title;
-                var content = snap.val().content;
-                var city = snap.val().city;
-                var lon = snap.val().lon;
-                var lat = snap.val().lat;
-                var temp = snap.val().temp;
-                var w_condition = snap.val().w_coidtion;
-
-                var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
-                var icons = {
-                    journalEntry: {
-                        icon: iconBase + '/icon54.png'
-                    }
-                };
-
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(lat, lon),
-                    map: map,
-                    icon: icons.journalEntry.icon
-                });
-
-                google.maps.event.addListener(marker, 'click', (function (marker) {
-                    return function () {
-
-
-                        // infowindow.setContent(title);
-                        // infowindow.open(map, marker);
-                        console.log(title);
-                    }
-                })(marker, title));
-            });
-
-
-
-
-
-            // for (i = 0; i < locations.length; i++) {
-            //     marker = new google.maps.Marker({
-            //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            //         map: map
-            //     });
-
-            //     google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            //         return function () {
-            //             infowindow.setContent(locations[i][0]);
-            //             infowindow.open(map, marker);
-            //         }
-            //     })(marker, i));
-            // }
-        }
-
-
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV5nuOTlmfsvRYZpn--64G27L12SRtYkI&callback=initMap">
-    </script>
->>>>>>> 75f11122823dbbcbfc44c94f242ec2550fe17437
+    <script src="assets/javascript/map.js"></script>
     <script src="assets/javascript/app.js"></script>
     <script src="assets/javascript/geoWeather.js"></script>
 </body>
