@@ -80,7 +80,8 @@ $("#submit-button").click(function () {
     var lat = $("#input-lat").val().trim();
     var temp = $("#input-temp").val().trim();
     var w_condition = $("#input-w-condition").val().trim();
-
+    var date_time = moment().format();
+    console.log(date_time);
 //data validation:
 if(title !=="" && content !==""){
 
@@ -94,7 +95,8 @@ if(title !=="" && content !==""){
         lon: lon,
         lat: lat,
         temp: temp,
-        w_condition: w_condition
+        w_condition: w_condition,
+        date_time: date_time
     }
 
     //save it to firebase
@@ -132,6 +134,7 @@ database.ref().on("child_added", function (snap) {
     var lon = snap.val().lon;
     var lat = snap.val().lat;
     var temp = snap.val().temp;
+    var date_time = snap.val().date_time;
     var w_condition = snap.val().w_condition;
     //changes happened here above
 
@@ -151,9 +154,11 @@ database.ref().on("child_added", function (snap) {
     entryButton.attr("data-lat", lat);
     entryButton.attr("data-temp", temp);
     entryButton.attr("data-w-condition", w_condition);
+    entryButton.attr("data-date-time", date_time);
 
     entryButton.html("<h4>Title: "+title+"</h4>");
     // entryButton.append("<h3><b>Content: </b>"+content+"</h3>");
+    entryButton.append("<p class='btnTimeStampHuman' data-date-time='"+date_time+"'>"+moment.duration(moment().diff(date_time)).humanize()+"</p");
     entryButton.append("<p>Ln: "+lon+", Lt: "+lat+"</p");
     entryButton.append("<p>City: "+city+", State: "+state+", Country: "+country+"</p");
     entryButton.append("<p>Temp: "+temp+", Weather: "+w_condition+"</p");
@@ -194,17 +199,20 @@ $(document).on("click", ".journalEntry", function(event){
 
     var entryLon = $(this).attr("data-lon");
     var entryLat = $(this).attr("data-lat");
-    
+    var date_time = $(this).attr("data-date-time");
     var entryTemp = $(this).attr("data-temp");
     var entryWeather = $(this).attr("data-w-condition");
-    displayJournalOn(entryTitle, entryContent, entryCity, entryState, entryCountry, entryLat, entryLon, entryTemp, entryWeather);
+    displayJournalOn(entryTitle, entryContent, entryCity, entryState, entryCountry, entryLat, entryLon, entryTemp, entryWeather,date_time);
 
 });
 
 
 
-function displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition){
+function displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition, date_time){
     $("#view-titleX").html(title);
+    // moment(date_time).format("MMM Do YYYY, h:mm:ss:a")
+    $("#view-date-timeX").html(moment(date_time).format("MMM Do YYYY, h:mm:ss:a"));
+  
     $("#view-cityX").html(city);
     $("#view-stateX").html(state);
     $("#view-countryX").html(country);
@@ -223,7 +231,7 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
     });
 
     map.setCenter(new google.maps.LatLng(lat, parseFloat(lon)+30.00));
-    
+    var flightPlanCoordinates = []; 
     database.ref().on("child_added", function (snap) {
         entryKey = snap.key;
         //initialize  vars
@@ -236,6 +244,7 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
         var lat = snap.val().lat;
         var temp = snap.val().temp;
         var w_condition = snap.val().w_condition;
+        var date_time = snap.val().date_time;
         var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
         var icons = {
             journalEntry: {
@@ -243,6 +252,8 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
             }
         };
         
+        flightPlanCoordinates.push({ lat: parseFloat(lat), lng: parseFloat(lon) });
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
@@ -253,7 +264,7 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
 
         google.maps.event.addListener(marker, 'click', (function (marker) {
             return function () {
-                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition);
+                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition, date_time);
                     //show journal
                     //hide form div
                     //show journal display div
@@ -270,5 +281,31 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
                 console.log(title); 
             }
         })(marker, title));
+
+        var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+        });
+
+        flightPath.setMap(map);
+
+
+
+    });
+}
+
+setInterval(updateHumanDate, 10000);
+
+function updateHumanDate(){
+
+    $(".btnTimeStampHuman").each(function(i, element){
+        var date_time =$(this).attr("data-date-time");
+        date_time = moment(date_time);
+        $(this).html(moment.duration(moment().diff(date_time)).humanize());
+        
+
     });
 }
