@@ -158,7 +158,7 @@ database.ref().on("child_added", function (snap) {
 
     entryButton.html("<h4>Title: "+title+"</h4>");
     // entryButton.append("<h3><b>Content: </b>"+content+"</h3>");
-    entryButton.append("<p class='btnTimeStampHuman' data-date-time='"+date_time+"'>"+moment.duration(moment().diff(date_time)).humanize()+"</p");
+    entryButton.append("<p class='btnTimeStampHuman' data-date-time='"+date_time+"'>"+moment.duration(moment().diff(date_time)).humanize()+ " ago."+"</p");
     entryButton.append("<p>Ln: "+lon+", Lt: "+lat+"</p");
     entryButton.append("<p>City: "+city+", State: "+state+", Country: "+country+"</p");
     entryButton.append("<p>Temp: "+temp+", Weather: "+w_condition+"</p");
@@ -304,7 +304,7 @@ function updateHumanDate(){
     $(".btnTimeStampHuman").each(function(i, element){
         var date_time =$(this).attr("data-date-time");
         date_time = moment(date_time);
-        $(this).html(moment.duration(moment().diff(date_time)).humanize());
+        $(this).html(moment.duration(moment().diff(date_time)).humanize() + " ago.");
         
 
     });
