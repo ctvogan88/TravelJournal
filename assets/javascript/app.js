@@ -162,7 +162,12 @@ database.ref().on("child_added", function (snap) {
     containerDiv.append(entryButton);
 
 
- // populates the Entry Display when Article Button is clicked
+ 
+    $("#listOfJournals").prepend(containerDiv);
+})
+
+
+// populates the Entry Display when Article Button is clicked
 $(document).on("click", ".journalEntry", function(event){
     event.preventDefault();
     
@@ -170,7 +175,13 @@ $(document).on("click", ".journalEntry", function(event){
     //show display-journal div
     $("#display-journal").show();
     $("#display-form-div").hide();
-    
+       // displays the form/results window
+    $(".createJournalWindow").show();
+    if (mapViewStatus) {
+        $("#btnAdd").html("<h1>VIEW MAP</h1>");
+        mapViewStatus = false;
+    } 
+
   
 
 
@@ -183,38 +194,14 @@ $(document).on("click", ".journalEntry", function(event){
 
     var entryLon = $(this).attr("data-lon");
     var entryLat = $(this).attr("data-lat");
+    
     var entryTemp = $(this).attr("data-temp");
     var entryWeather = $(this).attr("data-w-condition");
+    displayJournalOn(entryTitle, entryContent, entryCity, entryState, entryCountry, entryLat, entryLon, entryTemp, entryWeather);
 
-    //console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
-
-    // displays the form/results window
-    $(".createJournalWindow").show();
-    if (mapViewStatus) {
-        $("#btnAdd").html("<h1>VIEW MAP</h1>");
-        mapViewStatus = false;
-    } 
-
-
-    // $("label[for='input-title']").text("Title: " +  entryTitle); 
-    // $("label[for='applyDistanceSlab']").text("10 kms");
-    // $("#input-title").attr("placeholder", entryTitle);
-    // $("#input-content").attr("placeholder", entryContent);
-    // $("#input-city").attr("placerholder", entryCity);
-    // $("#input-lon").attr("placeholder", entryLon);
-    // $("#input-lat").attr("placeholder", entryLat);
-    // $("#input-temp").attr("placeholder", entryTemp);
-    // $("#input-w-condition").attr("placeholder", entryWeather);
-    // $("input[for='input-title']").hide();
-    
-    displayJournalOn(entryTitle, entryContent, entryCity, entryState, entryCountry, entryLon, entryLon, entryTemp, entryWeather);
-
-
-    /* $("submit-button").hide();
-    $("cancel-button").hide(); */
 });
-    $("#listOfJournals").prepend(containerDiv);
-})
+
+
 
 function displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition){
     $("#view-titleX").html(title);
@@ -227,4 +214,61 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
     $("#view-weather-conditionX").html(w_condition);
     $("#view-contentX").html(content);
     
+    initMap();
+    //center the map
+    
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4
+    });
+
+    map.setCenter(new google.maps.LatLng(lat, parseFloat(lon)+30.00));
+    
+    database.ref().on("child_added", function (snap) {
+        entryKey = snap.key;
+        //initialize  vars
+        var title = snap.val().title;
+        var content = snap.val().content;
+        var city = snap.val().city;
+        var state = snap.val().state;
+        var country = snap.val().country;
+        var lon = snap.val().lon;
+        var lat = snap.val().lat;
+        var temp = snap.val().temp;
+        var w_condition = snap.val().w_condition;
+        var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
+        var icons = {
+            journalEntry: {
+                icon: iconBase + '/icon54.png'
+            }
+        };
+        
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lon),
+            map: map,
+            icon: icons.journalEntry.icon
+        });
+
+       
+
+        google.maps.event.addListener(marker, 'click', (function (marker) {
+            return function () {
+                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition);
+                    //show journal
+                    //hide form div
+                    //show journal display div
+                    //make the button on map changed
+ 
+                   $("#display-journal").show();
+                   $("#display-form-div").hide();
+                   $(".createJournalWindow").show();
+                   if (mapViewStatus) {
+                       $("#btnAdd").html("<h1>VIEW MAP</h1>");
+                       mapViewStatus = false;
+                   } 
+    
+                console.log(title); 
+            }
+        })(marker, title));
+    });
 }
