@@ -108,3 +108,11 @@ text-shadow: 2px 2px 2px #aaa;
     background-color: coral;
     color: white;
 }
+
+.display-location, .display-weather, .display-content{
+    background-color: yellowgreen;
+}
+
+.display-div{
+    padding: 10px;  
+}
