@@ -116,6 +116,12 @@ if(title !=="" && content !==""){
     $("#input-title").focus();
     // alert("saved")
     $(".createJournalWindow").hide();
+
+        $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
+        mapViewStatus = true;
+
+
+
 }
 
 });
