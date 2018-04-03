@@ -130,7 +130,7 @@ database.ref().on("child_added", function (snap) {
     entryButton.attr("data-temp", temp);
     entryButton.attr("data-w-condition", w_condition);
     entryButton.html("<h4>Title: "+title+"</h4>");
-    entryButton.append("<h4><b>Content: </b>"+content+"</h4>");
+    entryButton.append("<h3><b>Content: </b>"+content+"</h3>");
     entryButton.append("<p>longitude: "+lon+"</p");
     entryButton.append("<p>littitude: "+lat+"</p");
     entryButton.append("<p>City: "+city+"</p");
