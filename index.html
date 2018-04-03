@@ -6,9 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Travel Journal</title>
+    <!-- favicon links -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link href="assets/images/sun-teepee-tree-icon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,28 +41,15 @@
 </head>
 
 <body>
-    <!-- Main Container of all page -->
     <div class="container" style="background-color: black; margin: 0 auto; width: 100%; height: 100%;">
-        <!-- the row for main container -->
         <div class="row no-float">
-
-            <!-- the map 9 column container -->
             <div class="col-lg-9 no-float" style="background-color: lightblue;">
-
-                <!-- div for map -->
                 <div id="map" style="height: 100%;"></div>
-
-                <!-- create journal button code -->
                 <button id="btnAdd" class="btn createJournalButton" style="border-radius: 15px;" href="#">
                     <h1>Click here to share your experience with TravelJournal followers</h1>
                 </button>
-
-                <!-- create journal window -->
                 <div class="createJournalWindow" style="border-radius: 20px;" href="#">
-                    <div class="col-lg-12">      
-                        
-                        
-                        <!-- display div for form -->
+                    <div class="col-lg-12">
                         <div class="display-div" id="form-div">
                             <form class="add-journal">
 
@@ -52,16 +57,6 @@
                                     <label for="input-title">Title</label>
                                     <input type="text" class="form-control" id="input-title" placeholder="Title">
                                 </div>
-
-                                <div class="form-group">
-                                  <label for="input-title">Title</label>
-                                  <input type="text" class="form-control" id="input-title" placeholder="Title">
-                              </div>
-
-                                <div class="form-group">
-                                  <label for="input-city">City</label>
-                                  <input type="text" class="form-control" id="input-city" placeholder="City">
-                              </div>
 
                                 <div class="form-group">
                                     <label for="input-lon">Longitutde</label>
@@ -95,22 +90,17 @@
                                 <button type="button" class="btn btn-danger" id='cancel-button'>Cancel</button>
                             </form>
                         </div>
-
-                        <!-- display div for showing contents of the journal -->
-                        <div class="display-div" id="entry-div"><!-- guessing this is here for div debug?  ck - let me know -->
-                            <h4>Title: <div id="view-titlex"></div></h4>
-                            </div>
                     </div>
                 </div>
-                <!-- end of create journal window -->
-
-
-
             </div>
-
-            <!-- Journal column -->
+            <div class="viewEntryWindow" style="border-radius: 20px;" href="#">
+                <div class="col-lg-12">
+                    <h4>Here's the Journal Entry Window!</h4>
+                </div>
+            </div>
             <div class="col-md-3 no-float" style="background-color: grey;">
-                <div id="listOfJournals" class="pre-scrollable scroll-full" ><!-- style="padding:0px;" this is now handled by css - ck  -->
+                <div id="listOfJournals" class="pre-scrollable scroll-full">
+                    <!-- style="padding:0px;" this is now handled by css - ck  -->
                 </div>
             </div>
         </div>
@@ -138,7 +128,6 @@
                 //initialize  vars
                 var title = snap.val().title;
                 var content = snap.val().content;
-                var city = snap.val().city;
                 var lon = snap.val().lon;
                 var lat = snap.val().lat;
                 var temp = snap.val().temp;
@@ -192,7 +181,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV5nuOTlmfsvRYZpn--64G27L12SRtYkI&callback=initMap">
     </script>
     <script src="assets/javascript/app.js"></script>
-    <script src="assets/javascript/geoWeather.js"></script>
+    <script src="assets/javascript/weather.js"></script>
 </body>
 
 </html>

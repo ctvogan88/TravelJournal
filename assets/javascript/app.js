@@ -1,13 +1,13 @@
-  // Initialize Firebase
-  var config = {
+// Initialize Firebase
+var config = {
     apiKey: "AIzaSyANNhzqVYqoSeLoMatGOb5YbIANBOR8ERo",
     authDomain: "traveljournal-14d81.firebaseapp.com",
     databaseURL: "https://traveljournal-14d81.firebaseio.com",
     projectId: "traveljournal-14d81",
     storageBucket: "traveljournal-14d81.appspot.com",
     messagingSenderId: "474695408824"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
@@ -25,18 +25,18 @@ $("#btnAdd").click(function () {
         $(this).html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
-    
+
 })
 
 //cancel button
-$("#cancel-button").click(function(){
+$("#cancel-button").click(function () {
     $(".createJournalWindow").hide();
 });
 
 //id='submit-button' on click
-$("#submit-button").click(function(){
+$("#submit-button").click(function () {
     // alert("you clicked submit.");
-    
+
     var title = $("#input-title").val().trim();
     var content = $("#input-content").val().trim();
     var city = $("#input-city").val().trim();
@@ -45,48 +45,48 @@ $("#submit-button").click(function(){
     var temp = $("#input-temp").val().trim();
     var w_condition = $("#input-w-condition").val().trim();
 
-//data validation:
-if(title !=="" && content !==""){
+    //data validation:
+    if (title !== "" && content !== "") {
 
-    //make an object
-    var dataObject = {
-        title: title,
-        content: content,
-        city: city,
-        lon: lon,
-        lat: lat,
-        temp: temp,
-        w_condition: w_condition
+        //make an object
+        var dataObject = {
+            title: title,
+            content: content,
+            city: city,
+            lon: lon,
+            lat: lat,
+            temp: temp,
+            w_condition: w_condition
+        }
+
+        //save it to firebase
+        database.ref().push(dataObject);
+
+        //clean the form
+        $("#input-title").val("");
+        $("#input-content").val("");
+        $("#input-city").val("");
+        $("#input-lon").val("");
+        $("#input-lat").val("");
+        $("#input-temp").val("");
+        $("#input-w-condition").val("");
+        //focus on the first line
+        $("#input-title").focus();
+        // alert("saved")
+        $(".createJournalWindow").show();
+
+
     }
-
-    //save it to firebase
-    database.ref().push(dataObject);
-
-    //clean the form
-    $("#input-title").val("");
-    $("#input-content").val("");
-    $("#input-city").val("");
-    $("#input-lon").val("");
-    $("#input-lat").val("");
-    $("#input-temp").val("");
-    $("#input-w-condition").val("");
-    //focus on the first line
-    $("#input-title").focus();
-    // alert("saved")
-    $(".createJournalWindow").show();
-
-
-}
 });
 
 
-database.ref().on("child_added", function(snap){
+database.ref().on("child_added", function (snap) {
     entryKey = snap.key;
-    
+
     //initialize  vars
     var title = snap.val().title;
     var content = snap.val().content;
-    var city =snap.val().city;
+    var city = snap.val().city;
     var lon = snap.val().lon;
     var lat = snap.val().lat;
     var temp = snap.val().temp;
@@ -94,7 +94,7 @@ database.ref().on("child_added", function(snap){
     //changes happened here above
 
     var containerDiv = $("<div>");
-    containerDiv.attr( "class", "articleDiv");
+    containerDiv.attr("class", "articleDiv");
 
     var entryButton = $("<button>");
     entryButton.attr("class", "journalEntry")
@@ -112,44 +112,48 @@ database.ref().on("child_added", function(snap){
     entryButton.append("<p>littitude: " + lat + "</p");
     entryButton.append("<p>Temperature: " + temp + "</p");
     entryButton.append("<p>Weather: " + w_condition + "</p");
-    
-    
+
+
     containerDiv.append(entryButton);
 
 
- // populates the Entry Display when Article Button is clicked
-$(document).on("click", ".articleBTN", function(event){
-    event.preventDefault();
-    console.log("clicked", $(this));
+    // populates the Entry Display when Article Button is clicked
+    $(document).on("click", ".journalEntry", function (event) {
+        
+            //hides the Add Journal div and shows the Journal Entry div
+            $(".createJournalWindow").hide();
 
-    // put entry data into variables
-    var entryTitle = $(this).attr("data-title");
-    var entryContent = $(this).attr("data-content");
-    var entryCity = $(this).attr("data-city");
-    var entryLon = $(this).attr("data-lon");
-    var entryLat = $(this).attr("data-lat");
-    var entryTemp = $(this).attr("data-temp");
-    var entryWeather = $(this).attr("data-w-condition");
+            $(".viewEntryWindow").show();
+            mapViewStatus = false;
 
-    console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
+        event.preventDefault();
+        console.log("clicked", $(this));
 
-    // displays the form/results window
-    $(".createJournalWindow").show();
+        // put entry data into variables
+        var entryTitle = $(this).attr("data-title");
+        var entryContent = $(this).attr("data-content");
+        var entryCity = $(this).attr("data-city");
+        var entryLon = $(this).attr("data-lon");
+        var entryLat = $(this).attr("data-lat");
+        var entryTemp = $(this).attr("data-temp");
+        var entryWeather = $(this).attr("data-w-condition");
 
-    $("label[for='input-title']").text("Title: " +  entryTitle); 
-    $("label[for='applyDistanceSlab']").text("10 kms");
-    $("#input-title").attr("placeholder", entryTitle);
-    $("#input-content").attr("placeholder", entryContent);
-    $("#input-city").attr("placerholder", entryCity);
-    $("#input-lon").attr("placeholder", entryLon);
-    $("#input-lat").attr("placeholder", entryLat);
-    $("#input-temp").attr("placeholder", entryTemp);
-    $("#input-w-condition").attr("placeholder", entryWeather);
+        console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
 
-    $("input[for='input-title']").hide();
-    
-    /* $("submit-button").hide();
-    $("cancel-button").hide(); */
-});
+        $("label[for='input-title']").text("Title: " + entryTitle);
+        $("label[for='applyDistanceSlab']").text("10 kms");
+        $("#input-title").attr("placeholder", entryTitle);
+        $("#input-content").attr("placeholder", entryContent);
+        $("#input-city").attr("placerholder", entryCity);
+        $("#input-lon").attr("placeholder", entryLon);
+        $("#input-lat").attr("placeholder", entryLat);
+        $("#input-temp").attr("placeholder", entryTemp);
+        $("#input-w-condition").attr("placeholder", entryWeather);
+
+        $("input[for='input-title']").hide();
+
+        /* $("submit-button").hide();
+        $("cancel-button").hide(); */
+    });
     $("#listOfJournals").prepend(containerDiv);
 })
