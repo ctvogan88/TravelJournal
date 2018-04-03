@@ -24,10 +24,12 @@ function initMap() {
         var title = snap.val().title;
         var content = snap.val().content;
         var city = snap.val().city;
+        var state = snap.val().state;
+        var country = snap.val().country;
         var lon = snap.val().lon;
         var lat = snap.val().lat;
         var temp = snap.val().temp;
-        var w_condition = snap.val().w_coidtion;
+        var w_condition = snap.val().w_condtion;
         var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
         var icons = {
             journalEntry: {
@@ -44,8 +46,22 @@ function initMap() {
 
         google.maps.event.addListener(marker, 'click', (function (marker) {
             return function () {
-                // infowindow.setContent(title);
-                // infowindow.open(map, marker);
+                
+                
+                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition);
+                    //show journal
+                    //hide form div
+                    //show journal display div
+                    //make the button on map changed
+ 
+                   $("#display-journal").show();
+                   $("#display-form-div").hide();
+                   $(".createJournalWindow").show();
+                   if (mapViewStatus) {
+                       $("#btnAdd").html("<h1>VIEW MAP</h1>");
+                       mapViewStatus = false;
+                   } 
+    
                 console.log(title); 
             }
         })(marker, title));
