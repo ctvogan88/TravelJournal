@@ -231,7 +231,7 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
     });
 
     map.setCenter(new google.maps.LatLng(lat, parseFloat(lon)+30.00));
-    
+    var flightPlanCoordinates = []; 
     database.ref().on("child_added", function (snap) {
         entryKey = snap.key;
         //initialize  vars
@@ -252,6 +252,8 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
             }
         };
         
+        flightPlanCoordinates.push({ lat: parseFloat(lat), lng: parseFloat(lon) });
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
@@ -279,6 +281,19 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
                 console.log(title); 
             }
         })(marker, title));
+
+        var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+        });
+
+        flightPath.setMap(map);
+
+
+
     });
 }
 
