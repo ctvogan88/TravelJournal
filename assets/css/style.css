@@ -1,21 +1,25 @@
-
-html,body,.container {
-    height:100%;
+.add-journal{
+    padding: 20px;
 }
+
+.articleBTN {
+    width:100%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+h1 {
+    opacity:.5;
+}
+
+h1:hover {
+    opacity:1;
+}
+
 .container {
     display:table;
     width: 101%;
     box-sizing: border-box;
-}
-
-.row {
-    height: 100%;
-    display: table-row;
-}
-
-.row .no-float {
-  display: table-cell;
-  float: none;
 }
 
 .createJournalButton {
@@ -38,8 +42,13 @@ html,body,.container {
     display: none;
 }
 
-.add-journal{
-    padding: 20px;
+html,body,.container {
+    height:100%;
+}
+
+#listOfJournals {
+    position: absolute;
+    top: 15px;
 }
 
 #map {
@@ -47,15 +56,14 @@ html,body,.container {
     width: 100%;
    }
 
-#listOfJournals {
-    position: absolute;
-    top: 15px;
+.row {
+    height: 100%;
+    display: table-row;
 }
 
-.articleBTN {
-    width:100%;
-    margin-bottom: 10px;
-    border-radius: 15px;
+.row .no-float {
+  display: table-cell;
+  float: none;
 }
 
 .scroll-full {
