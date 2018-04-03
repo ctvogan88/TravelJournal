@@ -1,13 +1,13 @@
-  // Initialize Firebase
-  var config = {
+// Initialize Firebase
+var config = {
     apiKey: "AIzaSyANNhzqVYqoSeLoMatGOb5YbIANBOR8ERo",
     authDomain: "traveljournal-14d81.firebaseapp.com",
     databaseURL: "https://traveljournal-14d81.firebaseio.com",
     projectId: "traveljournal-14d81",
     storageBucket: "traveljournal-14d81.appspot.com",
     messagingSenderId: "474695408824"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
@@ -34,7 +34,7 @@ $("#btnAdd").click(function () {
         $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
-})
+});
 
 
 
@@ -66,9 +66,9 @@ $("#cancel-button-journal").click(function(){
 });
 
 //id='submit-button' on click
-$("#submit-button").click(function(){
+$("#submit-button").click(function () {
     // alert("you clicked submit.");
-    
+
     var title = $("#input-title").val().trim();
     var content = $("#input-content").val().trim();
 
@@ -119,9 +119,9 @@ if(title !=="" && content !==""){
 });
 
 
-database.ref().on("child_added", function(snap){
+database.ref().on("child_added", function (snap) {
     entryKey = snap.key;
-    
+
     //initialize  vars
     var title = snap.val().title;
     var content = snap.val().content;
@@ -137,7 +137,7 @@ database.ref().on("child_added", function(snap){
 
     //creating container div
     var containerDiv = $("<div>");
-    containerDiv.attr( "class", "articleDiv");
+    containerDiv.attr("class", "articleDiv");
 
     // creating buttons
     var entryButton = $("<button>");

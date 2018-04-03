@@ -9,14 +9,15 @@ font-size: 24px;
 text-align: center;
 text-shadow: 2px 2px 2px #aaa;
 
-
-
 }
 
 .container {
     display:table;
     width: 101%;
+    height: 100%;
     box-sizing: border-box;
+    background-color: black; 
+    margin: 0 auto;
 }
 
 .row {
