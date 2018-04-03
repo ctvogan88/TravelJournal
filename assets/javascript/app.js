@@ -81,7 +81,7 @@ $("#submit-button").click(function () {
     var temp = $("#input-temp").val().trim();
     var w_condition = $("#input-w-condition").val().trim();
     var date_time = moment().format();
-    console.log(date_time);
+    // console.log(date_time);
 //data validation:
 if(title !=="" && content !==""){
 
@@ -115,7 +115,7 @@ if(title !=="" && content !==""){
     //focus on the first line
     $("#input-title").focus();
     // alert("saved")
-    $(".createJournalWindow").show();
+    $(".createJournalWindow").hide();
 }
 
 });
@@ -278,7 +278,7 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
                        mapViewStatus = false;
                    } 
     
-                console.log(title); 
+                // console.log(title); 
             }
         })(marker, title));
 

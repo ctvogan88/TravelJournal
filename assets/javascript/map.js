@@ -52,7 +52,7 @@ function initMap() {
                     mapViewStatus = false;
                 }
 
-                console.log(title);
+                // console.log(title);
             }
         })(marker, title));
 
