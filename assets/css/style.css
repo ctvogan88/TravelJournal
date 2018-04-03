@@ -1,3 +1,16 @@
+.add-journal{
+    padding: 20px;
+}
+
+
+.articleBTN {
+    width:100%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+h1 {
+    opacity:.5;
 
 html, body, .container {
     height:100%; /* this is not rendered by the browser and should be deleted - ck*/
@@ -20,14 +33,14 @@ text-shadow: 2px 2px 2px #aaa;
     box-sizing: border-box;
 }
 
-.row {
-    height: 100%;
-    display: table-row;
+h1:hover {
+    opacity:1;
 }
 
-.row .no-float {
-  display: table-cell;
-  float: none;
+.container {
+    display:table;
+    width: 101%;
+    box-sizing: border-box;
 }
 
 .createJournalButton {
@@ -53,14 +66,29 @@ text-shadow: 2px 2px 2px #aaa;
     display: none;
 }
 
-.add-journal{
-    padding: 20px;
+html,body,.container {
+    height:100%;
+}
+
+#listOfJournals {
+    position: absolute;
+    top: 15px;
 }
 
 #map {
     height: 100%;
     width: 100%;
    }
+
+
+.row {
+    height: 100%;
+    display: table-row;
+}
+
+.row .no-float {
+  display: table-cell;
+  float: none;
 
 #listOfJournals {
     position: absolute;
