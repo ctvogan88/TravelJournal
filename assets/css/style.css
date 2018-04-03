@@ -1,6 +1,6 @@
 
 html, body, .container {
-    height:100%; /* this is not rendered by the browser and should be deleted - ck*/
+    height:100%;
 }
 .container {
     display:table;
@@ -49,8 +49,7 @@ html, body, .container {
 #listOfJournals {
     position: absolute;
     top: 15px;
-    padding: 0px; /* this was not rendered by the browser as it was overridden by the inline style which is now commented out - ck*/
-    margin: 0px;
+    padding: 10px;
 
 }
 
@@ -61,18 +60,13 @@ html, body, .container {
 }
 
 .journalEntry h4 {
-/* the following is from google fonts and will overide bootstrap - ck*/
-    font-family: 'Lato', sans-serif;
-/*    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 24px;
     text-align: center;
-    text-shadow: 2px 2px 2px #aaa;
 }
 
 .journalEntry p {
-/* the following is from google fonts and will overide bootstrap - ck*/
-    font-family: 'Lato', sans-serif;
-/*    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
     text-align: left;
 }
