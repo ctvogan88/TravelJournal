@@ -11,10 +11,7 @@
 
 var database = firebase.database();
 
-
-
 //ebstablish  variable from viewing mode
-// establish variable for viewing mode
 var mapViewStatus = true;
 
 // show/hide jounral entry form or map view 
@@ -28,11 +25,7 @@ $("#btnAdd").click(function () {
         $(this).html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
-
-//add button:
-$("#btnAdd").click(function(){
-    $(".createJournalWindow").show();
-
+    
 })
 
 //cancel button
@@ -59,16 +52,12 @@ if(title !=="" && content !==""){
     var dataObject = {
         title: title,
         content: content,
-
         city: city,
-
-
         lon: lon,
         lat: lat,
         temp: temp,
         w_condition: w_condition
     }
-
 
     //save it to firebase
     database.ref().push(dataObject);
@@ -77,49 +66,6 @@ if(title !=="" && content !==""){
     $("#input-title").val("");
     $("#input-content").val("");
     $("#input-city").val("");
-    $("#input-lon").val("");
-    $("#input-lat").val("");
-    $("#input-temp").val("");
-    $("#input-w-condition").val("");
-    //focus on the first line
-    $("#input-title").focus();
-    // alert("saved")
-    $(".createJournalWindow").show();
-    //data validation:
-    if (title !== "" && content !== "") {
-
-        //make an object
-        var dataObject = {
-            title: title,
-            content: content,
-            lon: lon,
-            lat: lat,
-            temp: temp,
-            w_condition: w_condition
-        }
-
-        //save it to firebase
-        database.ref().push(dataObject);
-
-        //clean the form
-        $("#input-title").val("");
-        $("#input-content").val("");
-        $("#input-lon").val("");
-        $("#input-lat").val("");
-        $("#input-temp").val("");
-        $("#input-w-condition").val("");
-        //focus on the first line
-        $("#input-title").focus();
-        // alert("saved")
-        $(".createJournalWindow").show();
-
-
-    //save it to firebase
-    database.ref().push(dataObject);
-
-    //clean the form
-    $("#input-title").val("");
-    $("#input-content").val("");
     $("#input-lon").val("");
     $("#input-lat").val("");
     $("#input-temp").val("");
@@ -151,7 +97,7 @@ database.ref().on("child_added", function(snap){
     containerDiv.attr( "class", "articleDiv");
 
     var entryButton = $("<button>");
-    entryButton.attr("class", "articleBTN")
+    entryButton.attr("class", "journalEntry")
     entryButton.attr("data-title", title);
     entryButton.attr("data-content", content);
     entryButton.attr("data-city", city);
@@ -159,26 +105,11 @@ database.ref().on("child_added", function(snap){
     entryButton.attr("data-lat", lat);
     entryButton.attr("data-temp", temp);
     entryButton.attr("data-w-condition", w_condition);
-
-
-    entryButton.html("<h3><b>Title:</b> " + title + "</h3>");
-    entryButton.append("<h4><b>Content: </b>" + content + "</h4>");
-    entryButton.append("<p>longitude: " + lon + "</p");
-    entryButton.append("<p>littitude: " + lat + "</p");
-    entryButton.append("<p>Temperature: " + temp + "</p");
-    entryButton.append("<p>Weather: " + w_condition + "</p");
-
     entryButton.html("<h4>Title: "+title+"</h4>");
     //entryButton.append("<h4><b>Content: </b>"+content+"</h4>");
     //entryButton.append("<p>longitude: "+lon+"</p");
     //entryButton.append("<p>littitude: "+lat+"</p");
     entryButton.append("<p>City: "+city+"</p");
-
-    entryButton.html("<h3><b>Title:</b> "+title+"</h4>");
-    entryButton.append("<h4><b>Content: </b>"+content+"</h4>");
-    entryButton.append("<p>longitude: "+lon+"</p");
-    entryButton.append("<p>littitude: "+lat+"</p");
-
     entryButton.append("<p>Temperature: "+temp+"</p");
     entryButton.append("<p>Weather: "+w_condition+"</p");
     
@@ -194,26 +125,13 @@ $(document).on("click", ".articleBTN", function(event){
     // put entry data into variables
     var entryTitle = $(this).attr("data-title");
     var entryContent = $(this).attr("data-content");
-
     var entryCity = $(this).attr("data-city");
-
     var entryLon = $(this).attr("data-lon");
     var entryLat = $(this).attr("data-lat");
     var entryTemp = $(this).attr("data-temp");
     var entryWeather = $(this).attr("data-w-condition");
 
-
     console.log(entryTitle + entryContent + entryCity + entryLon + entryTemp + entryWeather);
-        // put entry data into variables
-        var entryTitle = $(this).attr("data-title");
-        var entryContent = $(this).attr("data-content");
-        var entryLon = $(this).attr("data-lon");
-        var entryLat = $(this).attr("data-lat");
-        var entryTemp = $(this).attr("data-temp");
-        var entryWeather = $(this).attr("data-w-condition");
-
-
-    console.log(entryTitle + entryContent + entryLon + entryTemp + entryWeather);
 
     // displays the form/results window
     $(".createJournalWindow").show();
@@ -222,23 +140,11 @@ $(document).on("click", ".articleBTN", function(event){
     $("label[for='applyDistanceSlab']").text("10 kms");
     $("#input-title").attr("placeholder", entryTitle);
     $("#input-content").attr("placeholder", entryContent);
-
     $("#input-city").attr("placerholder", entryCity);
-
     $("#input-lon").attr("placeholder", entryLon);
     $("#input-lat").attr("placeholder", entryLat);
     $("#input-temp").attr("placeholder", entryTemp);
     $("#input-w-condition").attr("placeholder", entryWeather);
-
-        $("label[for='input-title']").text("Title: " + entryTitle);
-        $("label[for='applyDistanceSlab']").text("10 kms");
-        $("#input-title").attr("placeholder", entryTitle);
-        $("#input-content").attr("placeholder", entryContent);
-        $("#input-lon").attr("placeholder", entryLon);
-        $("#input-lat").attr("placeholder", entryLat);
-        $("#input-temp").attr("placeholder", entryTemp);
-        $("#input-w-condition").attr("placeholder", entryWeather);
-
 
     $("input[for='input-title']").hide();
     
