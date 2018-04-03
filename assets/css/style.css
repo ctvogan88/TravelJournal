@@ -1,58 +1,30 @@
-.add-journal{
-    padding: 20px;
+
+html,body,.container {
+    height:100%;
 }
-
-
-.articleBTN {
-    width:100%;
-    margin-bottom: 10px;
-    border-radius: 15px;
-}
-
-h1 {
-    opacity:.5;
-
-html, body, .container {
-    height:100%; /* this is not rendered by the browser and should be deleted - ck*/
-}
-
-h1 {
-/* the following is from google fonts and will overide bootstrap default fonts. The link has been added to the head section of the html which is required to render properly - ck*/
-font-family: 'Lato', sans-serif;
-font-size: 24px;
-text-align: center;
-text-shadow: 2px 2px 2px #aaa;
-
-
-
-}
-
 .container {
     display:table;
     width: 101%;
     box-sizing: border-box;
 }
 
-h1:hover {
-    opacity:1;
+.row {
+    height: 100%;
+    display: table-row;
 }
 
-.container {
-    display:table;
-    width: 101%;
-    box-sizing: border-box;
+.row .no-float {
+  display: table-cell;
+  float: none;
 }
 
 .createJournalButton {
     position:absolute;
+    padding-top: -25px;
     bottom:15px;
     left:15px;
-    padding: 0px;
-    margin: 0px;
-    background-color:rgba (0, 0, 0, 0.5); 
-    color: black;
-    
-      
+    background-color:black;
+    color: white;   
 }
 
 .createJournalWindow{
@@ -66,13 +38,8 @@ h1:hover {
     display: none;
 }
 
-html,body,.container {
-    height:100%;
-}
-
-#listOfJournals {
-    position: absolute;
-    top: 15px;
+.add-journal{
+    padding: 20px;
 }
 
 #map {
@@ -80,54 +47,17 @@ html,body,.container {
     width: 100%;
    }
 
-
-.row {
-    height: 100%;
-    display: table-row;
-}
-
-.row .no-float {
-  display: table-cell;
-  float: none;
-
 #listOfJournals {
     position: absolute;
     top: 15px;
-    padding: 0px; /* this is now the setting for the id. previously thos was not rendered by the browser as it was overridden by the inline style which is now commented out in the html- ck*/
-    margin: 0px;
-
 }
 
-.journalEntry {
+.articleBTN {
     width:100%;
     margin-bottom: 10px;
     border-radius: 15px;
 }
 
-.journalEntry h4 {
-/* the following is from google fonts and will overide bootstrap default fonts. The link has been added to the head section of the html which is required to render properly - ck*/
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    text-align: center;
-    text-shadow: 2px 2px 2px #aaa;
-}
-
-.journalEntry p {
-/* the following is from google fonts and will overide bootstrap default fonts. The link has been added to the head section of the html which is required to render properly - ck*/
-    font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    text-align: left;
-}
-
 .scroll-full {
     max-height: 98%;
-}
-
-#btnAdd {
-    /* the following is from google fonts and will overide bootstrap default fonts. The link has been added to the head section of the html which is required to render properly - ck*/
-    font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    text-align: center;
-
-    
 }
