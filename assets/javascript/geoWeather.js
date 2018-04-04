@@ -21,7 +21,7 @@ function getGeoData() {
         $("#input-lon").val(lon);
         $("#input-city").val(city);
         $("#input-state").val(state);
-        $("#input-country").val(country);
+        $("#input-country").val(country); 
 
         // Another API for getting the current weather condition:
         //We already have Latitude, and Longtitude info and we will get it from this API

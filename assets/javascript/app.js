@@ -102,7 +102,7 @@ if(title !=="" && content !==""){
     //save it to firebase
     database.ref().push(dataObject);
 
-    //clean the form
+    //clean the form 
     $("#input-title").val("");
     $("#input-content").val("");
     $("#input-city").val("");
