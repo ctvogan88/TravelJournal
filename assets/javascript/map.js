@@ -66,5 +66,4 @@ function initMap() {
         flightPath.setMap(map);
     });
     console.log(flightPlanCoordinates);
-    console.log(testFlightPlanCoordinates);
 }
