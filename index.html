@@ -32,7 +32,7 @@
         <div class="row no-float">
 
             <!-- the map 9 column container -->
-            <div class="col-lg-9 no-float" style="background-color: lightblue;">
+            <div class="col-lg-9 no-float" style="background-color: lightblue;" id="mapcontainer">
 
                 <!-- div for map -->
                 <div id="map" style="height: 100%;"></div>
@@ -41,7 +41,10 @@
                 <button id="btnAdd" class="btn createJournalButton" href="#">
                     <h1>ADD JOURNAL</h1>
                 </button>
-
+                <!-- Toggle full view button -->
+                <button id="btnTog" class="btn" href="#">
+                    >
+                </button>
                 <!-- .createJournalWindow window -->
                 <div class="createJournalWindow" style="border-radius: 20px;" href="#">
                     <div class="col-lg-12">
@@ -107,7 +110,7 @@
                                     <label for="input-content">Contents</label>
                                     <textarea class="form-control" id="input-content" rows="10"></textarea>
                                 </div>
-
+                                <div class="text-danger" id="alert" style="display: none; padding: 10px;">Please fill the form correctly.</div>
 
                                 <!-- submit button -->
                                 <button type="button" class="btn btn-primary" id='submit-button'>Submit</button>
@@ -150,7 +153,7 @@
             </div>
 
             <!-- Journal column -->
-            <div class="col-md-3 no-float" style="background-color: grey;">
+            <div class="col-md-3 no-float" style="background-color: grey;" id="listofJournalsD">
                 <div id="listOfJournals" class="pre-scrollable scroll-full">
                     <!-- style="padding:0px;" this is now handled by css - ck  -->
                 </div>
