@@ -1,7 +1,8 @@
 // Gettin GeoLocation when called
 function getGeoData() {
     // api json link
-    var url = "http://ip-api.com/json"
+    // var url = "http://ip-api.com/json"
+    var url = "https://ipapi.co/json"
     //Ajax Request GET
     $.ajax({
         url: url,
@@ -9,11 +10,20 @@ function getGeoData() {
     }).then(function (data) {
         // console.log(data);
 
-        var lat = data.lat; //Latitude
-        var lon = data.lon; //Longitude
+        // var lat = data.lat; //Latitude
+        // var lon = data.lon; //Longitude
+        // var city = data.city;  //City
+        // var state = data.regionName; // State
+        // var country = data.country; // country
+
+        //new url HTTPS
+        var lat = data.latitude; //Latitude
+        var lon = data.longitude; //Longitude
         var city = data.city;  //City
-        var state = data.regionName; // State
+        var state = data.region; // State
         var country = data.country; // country
+
+
 
 
         // change the inputboxes in the newentry journal form
