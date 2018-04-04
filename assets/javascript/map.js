@@ -29,7 +29,8 @@ function initMap() {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
-            icon: icons.journalEntry.icon
+            icon: icons.journalEntry.icon,
+            title: title
         });
 
 
@@ -66,6 +67,6 @@ function initMap() {
 
         flightPath.setMap(map);
     });
-    console.log(flightPlanCoordinates);
+    //console.log(flightPlanCoordinates);
     //console.log(testFlightPlanCoordinates);
 }

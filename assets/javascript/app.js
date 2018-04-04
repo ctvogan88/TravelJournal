@@ -24,9 +24,10 @@ $("#btnAdd").click(function () {
     $("#display-journal").hide();
     $("#display-form-div").show();
     
-
+    $("#alert").hide();
     if (mapViewStatus) {
         $(".createJournalWindow").show();
+        $("#input-title").focus();
         $("#btnAdd").html("<h1>VIEW MAP</h1>");
         mapViewStatus = false;
     } else {
@@ -36,10 +37,27 @@ $("#btnAdd").click(function () {
     }
 });
 
+$("#btnTog").on("click", toggleListView);
+
+var listofJournalsD = true;
+function toggleListView(){
+    if(listofJournalsD){
+        $("#listofJournalsD").hide();
+        $("#btnTog").html("<");
+        $("#mapcontainer").attr("class", "col-lg-12 no-float");
+        listofJournalsD = false;
+    }else{
+        $("#listofJournalsD").show();
+        $("#btnTog").html(">");
+        $("#mapcontainer").attr("class", "col-lg-9 no-float");
+        listofJournalsD = true;
+    }
+}
 
 
 //cancel button for form
 $("#cancel-button").click(function(){
+    $("#alert").hide();
     if (mapViewStatus) {
         $(".createJournalWindow").show();
         $("#btnAdd").html("<h1>VIEW MAP</h1>");
@@ -63,6 +81,11 @@ $("#cancel-button-journal").click(function(){
         $("#btnAdd").html("<h1>ADD JOURNAL</h1>");
         mapViewStatus = true;
     }
+    // 3 seconds after the center of the map has changed, pan back to the
+            // marker.
+                
+           
+            
 });
 
 //id='submit-button' on click
@@ -82,9 +105,10 @@ $("#submit-button").click(function () {
     var w_condition = $("#input-w-condition").val().trim();
     var date_time = moment().format();
     // console.log(date_time);
-//data validation:
-if(title !=="" && content !==""){
 
+    //data validation:
+if(title !=="" && content !==""){
+    $("#alert").hide();
     //make an object
     var dataObject = {
         title: title,
@@ -122,6 +146,9 @@ if(title !=="" && content !==""){
 
 
 
+}else{
+    $("#input-title").focus();
+    $("#alert").show();
 }
 
 });
@@ -263,7 +290,8 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
-            icon: icons.journalEntry.icon
+            icon: icons.journalEntry.icon,
+            title: title
         });
 
        
@@ -287,6 +315,10 @@ function displayJournalOn(title, content, city, state, country, lat, lon, temp, 
                 // console.log(title); 
             }
         })(marker, title));
+       
+    
+        
+            
 
         var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
