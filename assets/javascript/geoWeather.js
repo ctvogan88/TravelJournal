@@ -7,7 +7,7 @@ function getGeoData() {
         url: url,
         method: "GET"
     }).then(function (data) {
-        console.log(data);
+        // console.log(data);
 
         var lat = data.lat; //Latitude
         var lon = data.lon; //Longitude

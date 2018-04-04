@@ -1,6 +1,6 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4
+        zoom: 2
     });
     map.setCenter(new google.maps.LatLng(41.850033, -87.6500523));
 
@@ -19,6 +19,7 @@ function initMap() {
         var lat = parseFloat(snap.val().lat);
         var temp = snap.val().temp;
         var w_condition = snap.val().w_condtion;
+        var date_time = snap.val().date_time;
         var iconBase = 'http://maps.google.com/mapfiles/kml/pal3';
         var icons = {
             journalEntry: {
@@ -32,12 +33,12 @@ function initMap() {
         });
 
 
-
+       
         flightPlanCoordinates.push({ lat: lat, lng: lon });
 
         google.maps.event.addListener(marker, 'click', (function (marker) {
             return function () {
-                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition);
+                displayJournalOn(title, content, city, state, country, lat, lon, temp, w_condition, date_time);
                 //show journal
                 //hide form div
                 //show journal display div
@@ -51,7 +52,7 @@ function initMap() {
                     mapViewStatus = false;
                 }
 
-                console.log(title);
+                // console.log(title);
             }
         })(marker, title));
 
@@ -66,4 +67,5 @@ function initMap() {
         flightPath.setMap(map);
     });
     console.log(flightPlanCoordinates);
+    //console.log(testFlightPlanCoordinates);
 }
